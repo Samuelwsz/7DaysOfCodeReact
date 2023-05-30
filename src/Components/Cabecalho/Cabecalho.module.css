@@ -1,0 +1,55 @@
+.header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 7em;
+}
+
+.header img {
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu li:last-child {
+  margin-right: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+}
+
+@media (min-width: 400px) and (max-width: 700px) {
+  .header img {
+    width: 100px;
+  }
+  .menu {
+    display: block;
+  }
+  .menu li {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px){
+  .menu{
+    font-size: 12px;
+  }
+  .menu li {
+    margin-right: 8px;
+  }
+}
