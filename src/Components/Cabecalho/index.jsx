@@ -18,7 +18,7 @@ export default function Cabecalho() {
         </li>
         <li>
           <Link to="/home">
-            <p>Ofertas</p>
+            <p>Plantas</p>
           </Link>
         </li>
         <li>

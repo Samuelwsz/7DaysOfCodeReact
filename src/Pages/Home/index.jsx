@@ -5,8 +5,10 @@ import { useEffect, useState } from "react"
 
 export default function Home() {
   const [plantas, setPlantas] = useState([])
+
   const [filtroPreco, setFiltroPreco] = useState("")
   const [filtroNome, setFiltroNome] = useState("")
+  const [mensagem, setMensagem] = useState("")
 
   useEffect(() => {
     fetch(
@@ -16,23 +18,35 @@ export default function Home() {
       .then((dados) => setPlantas(dados))
   }, [])
 
-  const handleFiltrarPreco = () => {
+  const handleFiltrarPreco = (event) => {
+    event.preventDefault()
+
     const filteredPlantas = plantas.filter(
-      (planta) => planta.preco <= filtroPreco
+      (planta) =>
+        parseFloat(planta.preco.replace(",", ".")) <= parseFloat(filtroPreco)
     )
     setPlantas(filteredPlantas)
   }
 
-  const handleFiltrarNome = () => {
+  const handleFiltrarNome = (event) => {
+    event.preventDefault()
+
     const filteredPlantas = plantas.filter((planta) =>
       planta.nome.toLowerCase().includes(filtroNome.toLowerCase())
     )
     setPlantas(filteredPlantas)
+
+    if (filteredPlantas.length === 0) {
+      setMensagem("Nome não existe")
+    } else {
+      setMensagem("")
+    }
   }
 
   const handleLimparFiltro = () => {
     setFiltroPreco("")
     setFiltroNome("")
+    setMensagem("")
     // Recarrega a lista original de plantas da API
     fetch(
       "https://my-json-server.typicode.com/samuelwsz/api7DaysOfCodeReact/plantas"
@@ -47,7 +61,7 @@ export default function Home() {
       <div className={styles.container}>
         <div className={styles.home}>
           <p>Conheça nossas</p>
-          <p>ofertas</p>
+          <p>Plantas</p>
           <div>
             <input
               type="number"
@@ -68,15 +82,10 @@ export default function Home() {
           </div>
           <button onClick={handleLimparFiltro}>Limpar Filtro</button>
         </div>
-
+        {mensagem && <p style={{ textAlign: "center" }}>{mensagem}</p>}
         <section>
           {plantas.map((planta) => {
-            return (
-              <Card
-                {...planta}
-                key={planta.id}
-              />
-            )
+            return <Card {...planta} key={planta.id} />
           })}
         </section>
       </div>
