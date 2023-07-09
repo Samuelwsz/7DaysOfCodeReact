@@ -7,8 +7,8 @@
   margin: 0 7em;
 }
 
-.header img {
-  width: 120px;
+.header figure {
+  width: 150px;
   display: flex;
   align-items: center;
 }
@@ -34,8 +34,8 @@
 }
 
 @media (min-width: 400px) and (max-width: 700px) {
-  .header img {
-    width: 100px;
+  .header figure {
+    width: 130px;
   }
   .menu {
     display: block;
@@ -47,7 +47,7 @@
 
 @media (min-width: 701px) and (max-width: 900px){
   .menu{
-    font-size: 12px;
+    font-size: 13px;
   }
   .menu li {
     margin-right: 8px;

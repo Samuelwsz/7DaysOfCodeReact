@@ -1,10 +1,11 @@
-import Cabecalho from "@/Components/Cabecalho"
+import Cabecalho from "../../Components/Cabecalho"
 import styles from "./Home.module.css"
-import Card from "@/Components/Card"
-import { useEffect, useState } from "react"
+import Card from "../../Components/Card"
+import React, { useEffect, useState, FormEvent } from "react"
+import { IDadosPlantas } from "../../Components/Interface/IDadosPlantas"
 
 export default function Home() {
-  const [plantas, setPlantas] = useState([])
+  const [plantas, setPlantas] = useState<IDadosPlantas[]>([])
 
   const [filtroPreco, setFiltroPreco] = useState("")
   const [filtroNome, setFiltroNome] = useState("")
@@ -18,7 +19,7 @@ export default function Home() {
       .then((dados) => setPlantas(dados))
   }, [])
 
-  const handleFiltrarPreco = (event) => {
+  const handleFiltrarPreco = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const filteredPlantas = plantas.filter(
@@ -28,7 +29,7 @@ export default function Home() {
     setPlantas(filteredPlantas)
   }
 
-  const handleFiltrarNome = (event) => {
+  const handleFiltrarNome = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const filteredPlantas = plantas.filter((planta) =>
@@ -62,24 +63,24 @@ export default function Home() {
         <div className={styles.home}>
           <p>Conheça nossas</p>
           <p>Plantas</p>
-          <div>
+          <form onSubmit={handleFiltrarPreco}>
             <input
               type="number"
               placeholder="Filtrar por preço"
               value={filtroPreco}
               onChange={(e) => setFiltroPreco(e.target.value)}
             />
-            <button onClick={handleFiltrarPreco}>Filtrar</button>
-          </div>
-          <div>
+            <button type="submit">Filtrar</button>
+          </form>
+          <form onSubmit={handleFiltrarNome}>
             <input
               type="text"
               placeholder="Filtrar por nome"
               value={filtroNome}
               onChange={(e) => setFiltroNome(e.target.value)}
             />
-            <button onClick={handleFiltrarNome}>Filtrar</button>
-          </div>
+            <button type="submit">Filtrar</button>
+          </form>
           <button onClick={handleLimparFiltro}>Limpar Filtro</button>
         </div>
         {mensagem && <p style={{ textAlign: "center" }}>{mensagem}</p>}

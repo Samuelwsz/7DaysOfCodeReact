@@ -1,10 +1,11 @@
 import styles from "./Card.module.css"
 
-import Seta from "/Images/seta.svg"
-
 import { Link } from "react-router-dom"
 
-export default function Card({ nome, preco, imagem }) {
+import Seta from "../Icones/Seta"
+import { IDadosPlantas } from "../Interface/IDadosPlantas"
+
+export default function Card({ nome, preco, imagem }: IDadosPlantas) {
   return (
     <div className={styles.card}>
       <div className={styles.imgContainer}>
@@ -16,8 +17,9 @@ export default function Card({ nome, preco, imagem }) {
         <br />
         <div className={styles.msgIcone}>
           <Link className={styles.link} to="/">
-            <span>Comprar</span>
-            <img src={Seta} alt="Icone seta" />
+            <span>
+              Comprar <Seta />
+            </span>
           </Link>
         </div>
       </div>

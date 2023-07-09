@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom"
 import styles from "./Cabecalho.module.css"
 
-import Logo from "/Images/logo.svg"
+import Logo from "../Icones/Logo"
 
-export default function Cabecalho() {
+export default function Cabecalho(): JSX.Element {
   return (
     <header className={styles.header}>
-      <Link to='/'>
-        <img src={Logo} alt="Logo" />
+      <Link to="/">
+        <figure>
+          <Logo />
+        </figure>
       </Link>
 
       <ul className={styles.menu}>

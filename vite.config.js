@@ -8,5 +8,6 @@ export default defineConfig({
     alias: {
       "@": "/src",
     },
+    main: "src/main.tsx",
   },
 })

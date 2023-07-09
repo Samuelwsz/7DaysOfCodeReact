@@ -1,10 +1,10 @@
-import Cabecalho from "@/Components/Cabecalho"
+import Cabecalho from "../../Components/Cabecalho"
 
 import fundoAmarelo from "/Images/fundoAmarelo.png"
 import plantaInicio from "/Images/plantaInicial.png"
 
 import styles from "./Inicial.module.css"
-import Botao from "@/Components/Botao"
+import Botao from "../../Components/Botao"
 
 export default function Inicial() {
   return (
